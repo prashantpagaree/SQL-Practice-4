@@ -1,0 +1,14 @@
+use assign9;
+use Assign14o
+
+--1. SWIPES (SwipeID, swiperID, swipeeID). Calculate the number of matches.
+--Assume that one person can swipe the other only once. (WAQ directly, no
+--table is provided for this question. Alternatively you can create a table on
+--your own and proceed with this question)Create Table Swipes(SwipeID INT,SwiperID Varchar(15),SwipeeID Varchar(15));Insert into Swipes Values(1,'Prashant','Vaishi'),(2,'Vaishi','Prashant'),(3,'Shraddha','Pragati'),(4,'Pragati','Shraddha'),(5,'Radha','Rajesh');select count(*) As Total_Matches from Swipes A Inner Join Swipes B ON A.SwipeeID = B.SwiperID and A.SwiperID = B.SwipeeID;--2. Write a query to return employee pairs where salary difference is greater
+--than 6000. If there are pairs which have the same difference in salary,
+--then order by the first employee’s Name. The output should look like
+--Input (Employee: {employeeID, employee_first_name, Salary} )select A.EmployeeID As Employee_ID_1,A.Employee_First_Name As Employee_First_Name_1, B.EmployeeID As Employee_ID_2,B.Employee_First_Name As Employee_First_Name_2,ABS(A.SALARY-B.SALARY) AS SALARY_DIFFERENCE from P2 ACROSS JOIN P2 B WHERE ABS(A.SALARY-B.SALARY)>6000 ORDER BY ABS(A.SALARY-B.SALARY),A.Employee_First_Name;Select * from [dbo].[Question on sales]--3. Find the month-wise cumulative sum using self join: Question on salescreate table sales(ID INT,Date DATE,SALES INT);insert into sales values(1,'2021-09-01',76),(2,'2021-09-02',53),(3,'2021-09-03',34),(4,'2021-10-01',7),(5,'2021-10-02',12),(6,'2021-10-03',17),(7,'2022-01-04',54),(8,'2022-01-05',33),(9,'2022-01-06',24);select * from salesSelect A.id, a.Date,Sum(B.Sales) as Cum_Sum from sales A Inner Join Sales B On A.DATE >= B.DATE And Month(a.date) =month(b.date)Group by A.id,a.SALES,a.dateOrder by A.id,a.SALES--4. WAQ to get the output table using Natural join on PetsTypes and Pets
+tables.Select B.PetName,A.Pettype from PetsTypes A Natural Join Pets BSelect A.Pettypeid,B.petid,B.ownweid,B.petname,B.dob,A.Pettype from Petstypes A Natural Join Pets Bselect * from Products--5. We are trying to find paired products that are often purchased together by
+--the same user, such as chips and soft drinks, milk and curd etc..
+--Find the top paired products names.From the products table of the Ecommerce database:
+--Products.csvSelect F.Products,Y.Products,Count(o.CustomerID) AS tim_pur from Products F Cross Join Products YInner Join OrderDetails Od on F.ProductID = od.ProductID inner join Orders o on od.OrderID = o.OrderIDGroup by F.Products,Y.Products Order By Count(o.CustomerID) Desc;
